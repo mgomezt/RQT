@@ -31,6 +31,7 @@ class Sorteo extends CActiveRecord
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, fecha, idtiposorteo', 'safe', 'on'=>'search'),
+                        array('fecha', 'type', 'type'=>'date', 'dateFormat'=>'dd-MM-yyyy'),
 		);
 	}
 
@@ -94,4 +95,9 @@ class Sorteo extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+                
+        public function  getListarTipoSorteo()
+        {
+                return CHtml::listData(Tiposorteo::model()->findAll(),"id","descripcion");            
+        }
 }
